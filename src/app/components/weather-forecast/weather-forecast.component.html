@@ -1,0 +1,58 @@
+<div class="weather-forecast">
+  <div class="row">
+    <div class="col col-lg-8 offset-lg-2">
+      <div class="card my-3">
+        <div class="card-body">
+          <h4 class="card-title">{{selectedDayWeatherData.name}}</h4>
+          <h6 class="card-subtitle mb-2">{{selectedDayWeatherData.dt | date: 'fullDate'}}</h6>
+          <div class="row">
+            <div class="col-6">
+              <div class="card-text card-text_temperature">
+                <img [src]="selectedDayIconUrl" alt="Weather Forecast icon">
+                <span *ngIf="selectedDayIndex === 0"> {{currentAverageTemperature}} {{'°' + (selectedUnit === 'metric' ? 'C' : 'F')}}</span>
+                <span *ngIf="selectedDayIndex > 0"><strong> {{weather5DayDisplayData[selectedDayIndex].tempMax}}</strong> / {{weather5DayDisplayData[selectedDayIndex].tempMin}} {{'°' + (selectedUnit === 'metric' ? 'C' : 'F')}}</span>
+              </div>
+              <div class="card-text">
+                {{selectedDayWeatherMain}}<small class="text-muted">~{{selectedDayWeatherDescription}}</small>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="card-text">
+                Wind: <span class="text-muted">{{selectedDayWindSpeed}} {{selectedUnit === 'metric' ? 'meter/sec' : 'miles/hour'}}</span>
+              </div>
+              <div class="card-text">
+                Pressure: <span class="text-muted">{{selectedDayMainPressure}} hPa</span>
+              </div>
+              <div class="card-text">
+                Humidity: <span class="text-muted">{{selectedDayMainHumidity}} %</span>
+              </div>
+            </div>
+          </div>
+          <app-chart
+            [cityId]="cityId"
+            [dayWeatherDataList]="getDayWeatherList(selectedDayIndex)">
+          </app-chart>
+        </div>
+      </div>
+      <div class="card-group">
+        <div class="card text-center"
+             *ngFor="let i of week5days"
+             (click)="showDayWeatherData(i)"
+             [ngClass]="{'card--selected-day-background': i === selectedDayIndex}">
+          <div class="card-body">
+            <h6 class="card-subtitle mb-2">{{weather5DayDisplayData[i].date | date: "EEE, dd"}}</h6>
+            <div class="card-text">
+              <img [src]="weather5DayDisplayData[i].iconUrl || ''" alt="Weather Forecast Icon">
+            </div>
+            <div class="card-text">
+              <strong>{{weather5DayDisplayData[i].tempMax}}</strong> / {{weather5DayDisplayData[i].tempMin}} {{'°' + (selectedUnit === 'metric' ? 'C' : 'F')}}
+            </div>
+            <div class="card-text">
+              {{weather5DayDisplayData[i].weatherMain}}<small [ngClass]="{'text-muted': i !== selectedDayIndex}">~{{weather5DayDisplayData[i].weatherDescription}}</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

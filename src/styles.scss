@@ -1,0 +1,85 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~node_modules/bootstrap/scss/bootstrap.scss";
+
+$dark-yellow: #d6b600;
+
+/* body style*/
+body {
+  min-height: 100vh;
+  background: linear-gradient($black, $dark-yellow) no-repeat;
+  color: $white;
+}
+
+/* weather-forecast component style */
+.weather-forecast {
+  .card {
+    background-color: rgba(0, 0, 0, 0.51);
+    .card-text_temperature {
+      font-size: 20px;
+      vertical-align: middle;
+    }
+    &.card--cursor:hover {
+      cursor: pointer;
+    }
+    &.card--selected-day-background {
+      background: transparent;
+      border-color: transparent;
+      color: $white;
+      box-shadow: 0 0 15px 3px $black;
+      .text-muted {
+        color: $white;
+      }
+    }
+  }
+}
+
+/* navbar-style */
+.navbar {
+  &.navbar--background {
+    background-color: transparent;
+    .navbar-brand {
+      color: $dark-yellow;
+    }
+  }
+  .navbar__weather-logo {
+    width: 40px;
+  }
+
+  .navbar__search-input {
+    background-color: transparent;
+    border-color: $yellow;
+    color: $white;
+    &:focus {
+      color: $white;
+      //box-shadow: 0 0 0 1px $dark-yellow;
+      box-shadow: 0 0 0 3px rgba(255, 193, 7, 0.5);
+    }
+  }
+}
+
+@media (min-width: 576px) and (max-width: 768px) {
+  .navbar-expand-md > .container, .navbar-expand-md > .container-fluid {
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+}
+
+/* ngb-typeahead style */
+ngb-typeahead-window {
+  &.dropdown-menu {
+    color: $white;
+    background-color: $dark-yellow;
+    .dropdown-item {
+      color: $black;
+      &.active, &:active {
+        color: $white;
+        background-color: $black;
+      }
+    }
+  }
+}
+
+/* toast style */
+#toast-container > div {
+  opacity: 1;
+}

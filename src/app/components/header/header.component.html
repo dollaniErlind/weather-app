@@ -1,0 +1,25 @@
+<nav class="navbar navbar-dark navbar-expand-md navbar--background">
+  <div class="container">
+    <div class="navbar-brand">
+      <img src="assets/images/logo.png" class="navbar__weather-logo" alt="Weather Forecast">
+      Weather Forecast
+    </div>
+    <button type="button"
+            data-toggle="collapse"
+            class="navbar-toggler"
+            data-target="#navbar-search"
+            aria-controls="navbar-search"
+            (click)="isCollapsed = !isCollapsed"
+            [attr.aria-expanded]="!isCollapsed">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbar-search" [ngbCollapse]="isCollapsed">
+      <div class="my-2 my-lg-0 ml-auto">
+        <app-city-search></app-city-search>
+      </div>
+    </div>
+  </div>
+</nav>
+

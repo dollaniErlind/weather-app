@@ -1,0 +1,18 @@
+<form class="form-inline" name="citySearchForm" [formGroup]="citySearchForm" (ngSubmit)="setSelectedCityId()" autocomplete="off">
+  <div class="input-group my-2 my-sm-0">
+    <input
+      class="form-control navbar__search-input"
+      type="text"
+      placeholder="City"
+      aria-label="Search"
+      formControlName="city"
+      [resultFormatter]="formatter"
+      [inputFormatter]="formatter"
+      [ngbTypeahead]="searchForCity"
+      [editable]="false"
+      (selectItem)="selectedItem($event)">
+    <div class="input-group-append">
+      <button class="btn btn-outline-warning" type="submit" [disabled]="!citySearchForm.value.city">Search</button>
+    </div>
+  </div>
+</form>
